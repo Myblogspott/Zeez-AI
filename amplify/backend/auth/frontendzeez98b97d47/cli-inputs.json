@@ -1,0 +1,68 @@
+{
+  "version": "1",
+  "cognitoConfig": {
+    "identityPoolName": "frontendzeez98b97d47_identitypool_98b97d47",
+    "allowUnauthenticatedIdentities": true,
+    "resourceNameTruncated": "fronte98b97d47",
+    "userPoolName": "frontendzeez98b97d47_userpool_98b97d47",
+    "autoVerifiedAttributes": [
+      "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+      "SMS Text Message"
+    ],
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": [
+      "email"
+    ],
+    "aliasAttributes": [],
+    "userpoolClientGenerateSecret": false,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": [
+      "email"
+    ],
+    "userpoolClientReadAttributes": [
+      "email"
+    ],
+    "userpoolClientLambdaRole": "fronte98b97d47_userpoolclient_lambda_role",
+    "userpoolClientSetAttributes": false,
+    "sharedId": "98b97d47",
+    "resourceName": "frontendzeez98b97d47",
+    "authSelections": "identityPoolAndUserPool",
+    "useDefault": "defaultSocial",
+    "usernameAttributes": [
+      "email"
+    ],
+    "userPoolGroupList": [],
+    "serviceName": "Cognito",
+    "usernameCaseSensitive": false,
+    "useEnabledMfas": true,
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": true,
+    "dependsOn": [],
+    "hostedUI": true,
+    "hostedUIDomainName": "frontendzeezcee883f2-cee883f2",
+    "authProvidersUserPool": [],
+    "hostedUIProviderMeta": "[]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:3000/\"],\"LogoutURLs\":[\"http://localhost:3000/\"]}",
+    "authProviders": []
+  }
+}

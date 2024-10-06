@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "frontendzeez",
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authfrontendzeez98b97d47"
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 365,
+        "apiKeyExpirationDate": "2025-10-06T02:44:58.286Z",
+        "keyDescription": "identifytext"
+      }
+    ]
+  }
+}

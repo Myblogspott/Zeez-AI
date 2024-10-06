@@ -1,0 +1,14 @@
+{
+    "resourceName": "speechGeneratoref9e379b",
+    "convertPolicyName": "speechGeneratorPolicyef9e379b",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "convertType": "speechGenerator",
+    "language": "en-US",
+    "voice": "Danielle",
+    "access": "authAndGuest"
+}

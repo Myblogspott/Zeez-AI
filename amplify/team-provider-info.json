@@ -1,0 +1,33 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-frontendzeez-dev-ddb41-authRole",
+      "UnauthRoleArn": "arn:aws:iam::140023395767:role/amplify-frontendzeez-dev-ddb41-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::140023395767:role/amplify-frontendzeez-dev-ddb41-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-frontendzeez-dev-ddb41-deployment",
+      "UnauthRoleName": "amplify-frontendzeez-dev-ddb41-unauthRole",
+      "StackName": "amplify-frontendzeez-dev-ddb41",
+      "StackId": "arn:aws:cloudformation:us-east-1:140023395767:stack/amplify-frontendzeez-dev-ddb41/4c45a840-7d94-11ef-8a96-0e10530f727b",
+      "AmplifyAppId": "d37zuhviuw4mxr"
+    },
+    "categories": {
+      "auth": {
+        "frontendzeez98b97d47": {}
+      },
+      "predictions": {
+        "identifyLabelsc134b675": {},
+        "identifyText0a8cc9a1": {},
+        "speechGeneratoref9e379b": {}
+      },
+      "function": {
+        "quizGenerator": {
+          "openApiKey": "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"
+        },
+        "quiz": {
+          "openaiApiKey": "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"
+        }
+      }
+    }
+  }
+}

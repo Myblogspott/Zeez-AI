@@ -1,0 +1,111 @@
+{
+  "api": {
+    "api6e7f22dc": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "quizGenerator"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
+    "frontendzeez": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "frontendzeez98b97d47"
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "apiKeyConfig": {
+                "apiKeyExpirationDate": "2025-10-06T02:44:58.286Z",
+                "apiKeyExpirationDays": 365,
+                "description": "identifytext"
+              },
+              "authenticationType": "API_KEY"
+            }
+          ],
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authfrontendzeez98b97d47"
+            }
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
+  "auth": {
+    "frontendzeez98b97d47": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "quiz": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "quizGenerator": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "predictions": {
+    "identifyLabelsc134b675": {
+      "dependsOn": [],
+      "identifyType": "identifyLabels",
+      "providerPlugin": "awscloudformation",
+      "service": "Rekognition"
+    },
+    "identifyText0a8cc9a1": {
+      "dependsOn": [],
+      "identifyType": "identifyText",
+      "providerPlugin": "awscloudformation",
+      "service": "RekognitionAndTextract"
+    },
+    "speechGeneratoref9e379b": {
+      "convertType": "speechGenerator",
+      "providerPlugin": "awscloudformation",
+      "service": "Polly"
+    }
+  }
+}
