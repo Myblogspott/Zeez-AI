@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
-import { withAuthenticator, Authenticator, Button, Heading } from '@aws-amplify/ui-react';
+import { withAuthenticator, Authenticator, Button } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import TranscriptionComponent from './ATT';  // Audio-to-Text Component
 import TextToSpeechComponent from './TTS';  // Text-to-Speech Component
 import AuthComponent from './AuthComponent';  // Authentication Component
+import IdentityText from './IdentityText';  // New Identity Text Component
 import './App.css';
 
 // Feature Selection Component
@@ -31,6 +32,9 @@ function FeatureSelection() {
         </li>
         <li>
           <button onClick={() => handleNavigation('/quiz')}>Take a Quiz</button>
+        </li>
+        <li>
+          <button onClick={() => handleNavigation('/identify-text')}>Identify Text</button> {/* New button for Identify Text */}
         </li>
       </ul>
     </div>
@@ -126,6 +130,7 @@ function App() {
                 <Route path="/text-to-speech" element={<TextToSpeechComponent />} /> {/* Text to Speech */}
                 <Route path="/transcribe" element={<TranscriptionComponent />} /> {/* Transcription */}
                 <Route path="/quiz" element={<QuizComponent />} /> {/* Quiz */}
+                <Route path="/identify-text" element={<IdentityText />} /> {/* New route for Identify Text */}
 
                 {/* Catch-all route to handle unmatched paths */}
                 <Route path="*" element={<h3>Page Not Found</h3>} />
