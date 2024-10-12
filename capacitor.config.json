@@ -1,0 +1,6 @@
+{
+  "appId": "com.maruthi.zeezai",
+  "appName": "Zeez AI",
+  "webDir": "build",
+  "bundledWebRuntime": false
+}

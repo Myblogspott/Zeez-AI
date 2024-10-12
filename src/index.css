@@ -1,13 +1,203 @@
-body {
+/* Reset margins, padding, and box-sizing */
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* General body settings */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-image: url('/Users/sairaghavendra/Desktop/backgroung.jpg'); /* Update the path to your background image */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #333;
+}
+
+/* App container */
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Header and footer now span the full width */
+header, footer {
+  width: 100%;
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Header styling */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Header buttons */
+.header-left h1 {
+  color: #fff;
+  font-size: 1.8rem;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+.header-right button {
+  background-color: #007bff;  /* Use a less bright blue */
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header-right button:hover {
+  background-color: #0056b3;  /* Darken on hover for better contrast */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);  /* Subtle shadow on hover */
+}
+
+/* Main content */
+.homepage-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+.content {
+  background-color: rgba(255, 255, 255, 0.9); /* Slight transparency */
+  padding: 50px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.content h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.content p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+/* Button styling */
+.content .btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  background-color: #28a745;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  padding: 15px 30px;
+  margin: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* Footer is full-width */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #282c34;
+  color: white;
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+  color: #fff;
+}
+
+/* ----------- Chat styles ------------ */
+
+/* Chat container */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  height: 80vh;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* Chat box to show messages */
+.chat-box {
+  flex-grow: 1;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+}
+
+/* Chat messages styling */
+.chat-message {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.chat-message.user {
+  background-color: #007bff;
+  color: white;
+  align-self: flex-end;
+}
+
+.chat-message.bot {
+  background-color: #f1f1f1;
+  align-self: flex-start;
+}
+
+/* Chat input area */
+.chat-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat-input input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.chat-input button {
+  margin-left: 10px;
+  padding: 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.chat-input button:disabled {
+  background-color: #ccc;
 }

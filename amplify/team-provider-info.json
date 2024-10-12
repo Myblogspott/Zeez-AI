@@ -22,11 +22,19 @@
       },
       "function": {
         "quizGenerator": {
-          "openApiKey": "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"
+          "openApiKey": "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",
+          "deploymentBucketName": "amplify-frontendzeez-dev-ddb41-deployment",
+          "s3Key": "amplify-builds/quizGenerator-717a746f54756f655873-build.zip"
         },
         "quiz": {
-          "openaiApiKey": "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"
+          "openaiApiKey": "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",
+          "deploymentBucketName": "amplify-frontendzeez-dev-ddb41-deployment",
+          "s3Key": "amplify-builds/quiz-4b77727034776a7a437a-build.zip"
         }
+      },
+      "api": {
+        "api6e7f22dc": {},
+        "frontendzeez": {}
       }
     }
   }

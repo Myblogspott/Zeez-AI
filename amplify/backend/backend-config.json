@@ -89,6 +89,56 @@
       "service": "Lambda"
     }
   },
+  "parameters": {
+    "AMPLIFY_function_quizGenerator_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "quizGenerator"
+        }
+      ]
+    },
+    "AMPLIFY_function_quizGenerator_openApiKey": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "quizGenerator"
+        }
+      ]
+    },
+    "AMPLIFY_function_quizGenerator_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "quizGenerator"
+        }
+      ]
+    },
+    "AMPLIFY_function_quiz_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "quiz"
+        }
+      ]
+    },
+    "AMPLIFY_function_quiz_openaiApiKey": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "quiz"
+        }
+      ]
+    },
+    "AMPLIFY_function_quiz_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "quiz"
+        }
+      ]
+    }
+  },
   "predictions": {
     "identifyLabelsc134b675": {
       "dependsOn": [],

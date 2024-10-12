@@ -1,12 +1,17 @@
-// src/Footer.js
 import React from 'react';
 
-const Footer = () => {
-    return (
-        <footer>
-            <p>&copy; {new Date().getFullYear()} Your Company Name</p>
-        </footer>
-    );
-};
+function Footer() {
+  return (
+    <footer className="footer">
+      <p>© Copyrights Zeez AI, 2024</p>
+      <p>Empowering AI-driven solutions for learning and innovation</p>
+      <div className="social-media">
+        <a href="#twitter" target="_blank" rel="noopener noreferrer">Twitter</a>
+        <a href="#linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="#github" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </footer>
+  );
+}
 
 export default Footer;

@@ -2,10 +2,10 @@
     "resourceName": "identifyText0a8cc9a1",
     "identifyPolicyName": "identifyPolicy0a8cc9a1",
     "authRoleName": {
-      "Ref": "AuthRoleName"
+        "Ref": "AuthRoleName"
     },
     "unauthRoleName": {
-      "Ref": "UnauthRoleName"
+        "Ref": "UnauthRoleName"
     },
     "adminAuthProtected": "DISALLOW",
     "adminGuestProtected": "DISALLOW",
@@ -14,4 +14,3 @@
     "access": "auth | authAndGuest",
     "format": "PLAIN | FORM | TABLE | ALL"
 }
-  

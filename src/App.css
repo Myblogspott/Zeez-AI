@@ -1,14 +1,16 @@
+/* Background and layout for homepage */
 .home-container {
   background-image: url('/Users/sairaghavendra/Desktop/backgroung.jpg'); /* Update this path */
   background-size: cover;
-  height: 100vh; /* Full height */
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  color: white; /* Change text color for visibility */
+  color: white;
 }
 
+/* Content styling */
 .content {
   display: flex;
   flex-direction: column;
@@ -16,7 +18,7 @@
 }
 
 .box {
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.5);
   margin: 20px;
   padding: 20px;
   border-radius: 5px;
@@ -27,21 +29,150 @@
 }
 
 .box:hover {
-  background-color: rgba(0, 0, 0, 0.7); /* Darken on hover */
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* Header and Footer styles */
+/* Header styling */
 header {
   background-color: #282c34;
   padding: 10px;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left h1 {
   color: white;
 }
 
+.header-right button {
+  background-color: #282c34;
+  border: none;
+  padding: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.header-right button:hover {
+  background-color: #21a1f1;
+}
+
+/* Footer styling */
 footer {
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
-  text-align: center;
+  background-color: #282c34;
   color: white;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+}
+
+/* Quiz container styling */
+.quiz-container {
+  width: 450px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.quiz {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.quiz-container {
+  width: 450px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.start-quiz-button:hover {
+  background-color: #283593;
+  box-shadow: 0px 4px 6px rgba(63, 81, 181, 0.3);
+}
+.selected-option {
+  background-color: white !important;
+  color: black !important;
+  border: 2px solid #ccc !important;
+  border-radius: 6px;
+  padding: 10px 15px;
+}
+
+.unselected-option {
+  background-color: white !important;
+  color: black !important;
+  border: 1px solid #ccc !important;
+  border-radius: 6px;
+  padding: 10px 15px;
+}
+input[type="text"] {
+  all: unset;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.submit-quiz-button {
+  display: block;
+  margin: 20px auto; /* This will center the button horizontally */
+  padding: 12px 24px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-quiz-button:hover {
+  background-color: #45a049;
+}
+@media (max-width: 768px) {
+  .quiz-container {
+     width: 90%;
+     padding: 20px;
+  }
+}
+.take-quiz-button {
+  background-color: #FF5722; /* Your desired background color */
+  color: white;  /* Your desired text color */
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.take-quiz-button:hover {
+  background-color: #E64A19; /* Darker shade for hover */
+}
+/* Center the Authenticator box on the screen */
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full height to center vertically */
+
+}
+
+.authenticator-box {
+  width: 100%;
+  padding: 20px; /* Optional: Add some padding around the content */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0); /* Optional: Add subtle shadow */
 }
