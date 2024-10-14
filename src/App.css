@@ -32,39 +32,147 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* Header styling */
-header {
-  background-color: #282c34;
-  padding: 10px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header-left h1 {
-  color: white;
-}
-
-.header-right button {
-  background-color: #282c34;
-  border: none;
-  padding: 10px;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-.header-right button:hover {
-  background-color: #21a1f1;
-}
-
-/* Footer styling */
-footer {
-  background-color: #282c34;
-  color: white;
+/* Identify Text component styling */
+.identify-text-container {
   text-align: center;
+  margin-top: 50px;
+}
+
+.file-upload-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.custom-file-upload {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 20px;
+  font-size: 2rem;
+  padding: 0;  /* Remove padding */
+}
+
+.custom-file-upload-icon {
+  color: #007bff;
+  font-size: 2.0rem;
+  transition: color 0.3s ease;
+}
+
+.custom-file-upload:hover .custom-file-upload-icon {
+  color: #0056b3;
+}
+
+.identify-button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+.identify-button:hover {
+  background-color: #218838;
+}
+
+/* Error and success messages */
+.error-message {
+  color: red;
+}
+
+.result-section {
+  margin-top: 20px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Chat Component styling */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80vh;
+  width: 100%;  /* Set to 100% to fill screen width */
+  margin: 0;  /* Remove margins */
+  padding: 0;  /* Remove padding */
+  border: none;  /* Remove border */
+  background-color: transparent;  /* Set background to transparent to remove white card effect */
+  box-shadow: none;  /* Remove shadow to get rid of card effect */
+}
+
+.chat-box {
+  flex-grow: 1;
+  overflow-y: scroll;
   padding: 10px;
-  width: 100%;
+  border-bottom: none;  /* Remove bottom border */
+  background-color: transparent;  /* Ensure chat-box has a transparent background */
+}
+
+.user-message, .ai-message {
+  padding: 8px;
+  border-radius: 8px;
+  margin: 5px 0;
+}
+
+.user-message {
+  background-color: #daf8e3;
+  align-self: flex-end;
+}
+
+.ai-message {
+  background-color: #f1f1f1;
+  align-self: flex-start;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;  /* Slight padding for input area */
+  width: 100%;  /* Ensure full width for the input container */
+  box-sizing: border-box;  /* Include padding in element width */
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  margin: 0;  /* Remove extra margins */
+  width: 100%;  /* Ensure the input takes full width */
+  outline: none;
+  box-sizing: border-box;  /* Include padding in the element width */
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.upload-label {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.send-button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 10px;  /* Space between input field and button */
+}
+
+.loading {
+  text-align: center;
+  font-style: italic;
+  color: #888;
+  margin: 10px 0;
 }
 
 /* Quiz container styling */
@@ -79,7 +187,6 @@ footer {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
 .quiz {
   margin-top: 20px;
   padding: 10px;
@@ -87,21 +194,11 @@ footer {
   border-radius: 5px;
 }
 
-.quiz-container {
-  width: 450px;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  padding: 30px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 .start-quiz-button:hover {
   background-color: #283593;
   box-shadow: 0px 4px 6px rgba(63, 81, 181, 0.3);
 }
+
 .selected-option {
   background-color: white !important;
   color: black !important;
@@ -117,18 +214,10 @@ footer {
   border-radius: 6px;
   padding: 10px 15px;
 }
-input[type="text"] {
-  all: unset;
-  padding: 10px;
-  width: 100%;
-  margin-bottom: 20px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+
 .submit-quiz-button {
   display: block;
-  margin: 20px auto; /* This will center the button horizontally */
+  margin: 20px auto;
   padding: 12px 24px;
   background-color: #4CAF50;
   color: white;
@@ -142,37 +231,69 @@ input[type="text"] {
 .submit-quiz-button:hover {
   background-color: #45a049;
 }
+
 @media (max-width: 768px) {
   .quiz-container {
-     width: 90%;
-     padding: 20px;
+    width: 90%;
+    padding: 20px;
   }
 }
-.take-quiz-button {
-  background-color: #FF5722; /* Your desired background color */
-  color: white;  /* Your desired text color */
-  border: none;
-  padding: 12px 20px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+
+/* Footer styling */
+footer {
+  background-color: #282c34;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
 }
 
-.take-quiz-button:hover {
-  background-color: #E64A19; /* Darker shade for hover */
+/* Media queries for mobile responsiveness */
+@media (max-width: 768px) {
+  .chat-container {
+    width: 100%;  /* Ensure it fills the full width of mobile screens */
+    height: 100vh;  /* Adjust the height for mobile */
+    padding: 0;  /* Remove padding for better fit */
+  }
+
+  .input-container {
+    padding: 5px;  /* Reduce padding to allow more space for input */
+  }
+
+  input[type="text"] {
+    padding: 8px;
+    margin: 0;  /* Remove margins */
+  }
+
+  .send-button {
+    padding: 8px;
+  }
 }
+
 /* Center the Authenticator box on the screen */
 .auth-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh; /* Full height to center vertically */
-
 }
 
 .authenticator-box {
   width: 100%;
-  padding: 20px; /* Optional: Add some padding around the content */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0); /* Optional: Add subtle shadow */
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0);
+}
+
+.header-right button {
+  background-color: transparent;  /* Remove background color */
+  color: white;  /* Keep text color white */
+  border: none;  /* Remove the border */
+  padding: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-weight: bold;  /* Add emphasis to the button text */
+}
+
+.header-right button:hover {
+  text-decoration: underline;  /* Add an underline effect on hover */
 }

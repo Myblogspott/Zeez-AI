@@ -1,80 +1,77 @@
-// src/IdentityText.js
 import React, { useState } from 'react';
-import { Predictions } from '@aws-amplify/predictions';
+import { FaUpload } from 'react-icons/fa';  // Import an upload icon
 
-const IdentityText = () => {
-  const [response, setResponse] = useState(null);
+const IdentifyText = () => {
   const [file, setFile] = useState(null);
-  const [error, setError] = useState(null);  // State for handling errors
+  const [response, setResponse] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);  // State to track loading
 
-  // Function to handle text identification
-  const identifyText = async () => {
+  // Function to handle file change
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
+
+  // Function to handle the identify text action
+  const handleIdentifyText = async () => {
     if (!file) {
-      alert('Please select a file');
+      setError('Please select a file first.');
       return;
     }
 
+    setError('');
+    setLoading(true);  // Set loading to true when the request starts
+    const formData = new FormData();
+    formData.append('image', file);
+
     try {
-      const result = await Predictions.identify({
-        text: {
-          source: {
-            file,
-          },
-          format: 'ALL',  // Extract all text from the image
-        },
+      // Replace 'http://localhost:5001' with your deployed server URL
+      const response = await fetch('http://localhost:5001/api/extract-text', {
+        method: 'POST',
+        body: formData,
       });
 
-      // Safely extract the fullText, fallback to "No text found" if unavailable
-      const extractedText = result?.text?.fullText || 'No text found';
-      
-      // Log the full JSON response for debugging
-      console.log('Full JSON response:', result);
-      
-      // Set the extracted text in the response state for display
-      setResponse(extractedText);
-      setError(null);  // Clear any previous errors
-    } catch (error) {
-      console.error('Error identifying text:', error);
-      setError('Error identifying text. Please try again.');
-      setResponse(null);  // Clear response in case of error
+      const result = await response.json();
+      setResponse(result.text || 'No text identified.');
+    } catch (err) {
+      setError('Error processing the file. Please try again.');
+    } finally {
+      setLoading(false);  // Set loading to false when the request finishes
     }
   };
 
   return (
-    <div>
+    <div className="identify-text-container">
       <h3>Identify Text</h3>
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => setFile(e.target.files[0])}
-      />
-      <button onClick={identifyText}>Identify Text</button>
+      <div className="file-upload-section">
+        <input
+          type="file"
+          id="file-input"
+          accept="image/*"
+          onChange={handleFileChange}
+          style={{ display: 'none' }} // Hide the default input
+        />
+        <label htmlFor="file-input" className="custom-file-upload">
+          <FaUpload className="custom-file-upload-icon" />  {/* Add the upload icon */}
+        </label>
+        <button onClick={handleIdentifyText} className="identify-button">
+          Identify Text
+        </button>
+      </div>
 
-      {/* Display the error if one occurs */}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {/* Show loading message while processing */}
+      {loading && <p className="loading-message">🤖 Please wait, generating response from the robot...</p>}
 
-      {/* Display the extracted text if available */}
+      {/* Error and success messages */}
+      {error && <p className="error-message">{error}</p>}
       {response && (
-        <div>
-          <h3>Extracted Text:</h3>
-          <p style={styles.text}>{response}</p> {/* Styled extracted text */}
+        <div className="result-section">
+          <h4>Extracted Text:</h4>
+          <p>{response}</p>
         </div>
       )}
     </div>
   );
 };
 
-// Add some CSS styling for better text presentation
-const styles = {
-  text: {
-    whiteSpace: 'pre-wrap', // Preserve newlines and spacing in the extracted text
-    backgroundColor: '#f0f0f0',
-    padding: '10px',
-    borderRadius: '5px',
-    border: '1px solid #ccc',
-    fontSize: '16px',
-    color: '#333',
-  },
-};
-
-export default IdentityText;
+export default IdentifyText;

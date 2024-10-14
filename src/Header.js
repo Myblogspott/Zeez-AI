@@ -13,7 +13,10 @@ function Header() {
   return (
     <header className="header">
       <div className="header-left">
-        <h1>Zeez AI</h1>
+        {/* Make the logo clickable */}
+        <h1 onClick={() => handleNavigation('/')} style={{ cursor: 'pointer' }}>
+          Zeez AI
+        </h1>
       </div>
       <div className="header-center">
         <button onClick={() => handleNavigation('/identify-text')}>Generate Text from Image</button>

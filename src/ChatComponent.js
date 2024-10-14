@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Predictions } from '@aws-amplify/predictions';
+import { FaUpload, FaPaperPlane } from 'react-icons/fa';  // Import upload and send icons
 
 const ChatComponent = () => {
   const [messages, setMessages] = useState([]);  // Array of chat messages
   const [input, setInput] = useState('');        // User input message
   const [loading, setLoading] = useState(false); // Loading state for the AI response
+  const [image, setImage] = useState(null);      // To store the uploaded image
 
-  // Replace with your OpenAI API key
-  const OPENAI_API_KEY = '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 ';
+  const OPENAI_API_KEY = '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';  // Replace with your OpenAI API key
 
-  // Load chat history from localStorage on component mount
   useEffect(() => {
     const savedMessages = JSON.parse(localStorage.getItem('chatHistory'));
     if (savedMessages) {
@@ -17,54 +18,84 @@ const ChatComponent = () => {
     }
   }, []);
 
-  // Save chat history to localStorage
   const saveMessagesToLocalStorage = (messages) => {
     localStorage.setItem('chatHistory', JSON.stringify(messages));
   };
 
-  // Function to handle user message submission
   const handleSendMessage = async () => {
-    if (!input.trim()) return; // Prevent sending empty messages
+    if (!input.trim()) return;
 
-    const userMessage = { sender: 'user', text: input }; // User message object
-    const updatedMessages = [...messages, userMessage];  // Add user message to the message array
+    const userMessage = { sender: 'user', text: input };
+    const updatedMessages = [...messages, userMessage];
 
-    setMessages(updatedMessages);       // Update message list with user input
-    setInput('');                       // Clear input field
-    setLoading(true);                   // Set loading while fetching AI response
-    saveMessagesToLocalStorage(updatedMessages); // Save updated messages
+    setMessages(updatedMessages);
+    setInput('');
+    setLoading(true);
+    saveMessagesToLocalStorage(updatedMessages);
 
     try {
       const response = await axios.post(
-        'https://api.openai.com/v1/chat/completions', // OpenAI Chat API endpoint
+        'https://api.openai.com/v1/chat/completions',
         {
-          model: 'gpt-3.5-turbo',                    // Chat model (you can change to gpt-4 if available)
+          model: 'gpt-3.5-turbo',
           messages: [
-            { role: 'system', content: 'You are a helpful assistant.' }, // System's instructions for AI
-            { role: 'user', content: input }                              // User's message sent to AI
+            { role: 'system', content: 'You are a helpful assistant.' },
+            { role: 'user', content: input }
           ],
         },
         {
           headers: {
-            'Authorization': `Bearer ${OPENAI_API_KEY}`,  // Authorization header with API key
-            'Content-Type': 'application/json',           // API expects JSON
+            'Authorization': `Bearer ${OPENAI_API_KEY}`,
+            'Content-Type': 'application/json',
           },
         }
       );
 
-      // OpenAI returns an array of choices, take the first one
       const aiMessage = response.data.choices[0].message.content;
-      const aiMessageObject = { sender: 'ai', text: aiMessage }; // AI message object
+      const aiMessageObject = { sender: 'ai', text: aiMessage };
 
-      const updatedMessagesWithAI = [...updatedMessages, aiMessageObject]; // Append AI message
-      setMessages(updatedMessagesWithAI);  // Update message list with AI response
-      saveMessagesToLocalStorage(updatedMessagesWithAI); // Save updated messages with AI response
-
+      const updatedMessagesWithAI = [...updatedMessages, aiMessageObject];
+      setMessages(updatedMessagesWithAI);
+      saveMessagesToLocalStorage(updatedMessagesWithAI);
     } catch (error) {
       console.error('Error fetching OpenAI response:', error);
     }
 
-    setLoading(false); // Stop loading when response is fetched
+    setLoading(false);
+  };
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setImage(file);
+      processImage(file);
+    }
+  };
+
+  const processImage = async (imageFile) => {
+    setLoading(true);
+
+    try {
+      const result = await Predictions.identify({
+        text: {
+          source: {
+            file: imageFile,
+          },
+          format: 'ALL',
+        },
+      });
+
+      const extractedText = result?.text?.fullText || 'No text found';
+      const imageMessage = { sender: 'user', text: `Extracted text from image: ${extractedText}` };
+      const updatedMessages = [...messages, imageMessage];
+
+      setMessages(updatedMessages);
+      saveMessagesToLocalStorage(updatedMessages);
+    } catch (error) {
+      console.error('Error processing image:', error);
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -75,9 +106,19 @@ const ChatComponent = () => {
             <strong>{msg.sender === 'user' ? 'You' : 'AI'}:</strong> {msg.text}
           </div>
         ))}
-        {loading && <div style={styles.loading}>AI is typing...</div>}  {/* Display loading message */}
+        {loading && <div style={styles.loading}>Processing...</div>}
       </div>
       <div style={styles.inputContainer}>
+        <label htmlFor="imageUpload" style={styles.uploadLabel}>
+          <FaUpload size={20} color="#007bff" />
+        </label>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageUpload}
+          style={styles.fileInput}
+          id="imageUpload"
+        />
         <input
           type="text"
           value={input}
@@ -85,32 +126,33 @@ const ChatComponent = () => {
           placeholder="Type your message here..."
           style={styles.input}
         />
-        <button onClick={handleSendMessage} style={styles.sendButton}>Send</button>
+        <button onClick={handleSendMessage} style={styles.sendButton}>
+          <FaPaperPlane size={20} color="white" />
+        </button>
       </div>
     </div>
   );
 };
 
-// Chat component styles
 const styles = {
   chatContainer: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     height: '80vh',
-    width: '60%',
-    margin: '50px auto',
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    backgroundColor: '#fff',
+    width: '100%',  // Set to 100% for full width
+    margin: '0',    // Remove margin to fit the full width
     padding: '10px',
-    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+    border: 'none',  // Remove border
+    backgroundColor: 'transparent',  // Transparent background
+    boxShadow: 'none',  // Remove shadow to remove card effect
   },
   chatBox: {
     flexGrow: 1,
     overflowY: 'scroll',
     padding: '10px',
-    borderBottom: '1px solid #ccc',
+    borderBottom: 'none',  // Remove bottom border
+    backgroundColor: 'transparent',  // Transparent background
   },
   userMessage: {
     backgroundColor: '#daf8e3',
@@ -129,20 +171,31 @@ const styles = {
   inputContainer: {
     display: 'flex',
     alignItems: 'center',
+    padding: '10px 0',
   },
   input: {
     flex: 1,
     padding: '10px',
     border: '1px solid #ccc',
-    borderRadius: '4px',
+    borderRadius: '20px',
+    margin: '0 10px',
+  },
+  fileInput: {
+    display: 'none',
+  },
+  uploadLabel: {
+    cursor: 'pointer',
     marginRight: '10px',
   },
   sendButton: {
-    padding: '10px 20px',
+    padding: '10px',
     backgroundColor: '#007bff',
-    color: '#fff',
+    color: 'white',
     border: 'none',
-    borderRadius: '4px',
+    borderRadius: '50%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     cursor: 'pointer',
   },
   loading: {
