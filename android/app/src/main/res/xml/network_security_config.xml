@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
-</PreferenceScreen>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- Replace the IP address with the correct domain or IP if needed -->
+        <domain includeSubdomains="true">54.163.35.5</domain>
+        <trust-anchors>
+            <!-- Allow user added CA certificates (for system-trusted certificates) -->
+            <certificates src="system" />
+            <!-- Reference the self-signed certificate in the raw folder -->
+            <certificates src="@raw/selfsigned" />
+        </trust-anchors>
+    </domain-config>
+</network-security-config>
